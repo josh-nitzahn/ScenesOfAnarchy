@@ -1,7 +1,31 @@
 #include "GameApplicationPCH.h"
 #include "TowerOfDoomController.h"
 #include <stdlib.h>
+#include <Vision/Runtime/Framework/VisionApp/VAppImpl.hpp>
+#include <Vision/Runtime/EnginePlugins/VisionEnginePlugin/GUI/vGUI.hpp>
+#include <Vision/Runtime/EnginePlugins/VisionEnginePlugin/GUI/Controls/VTextControl.hpp>
+#include <string>
+#include <Vision/Runtime/Framework/VisionApp/Modules/VHelp.hpp>
+#include <Vision/Runtime/EnginePlugins/VisionEnginePlugin/GUI/VDlgControlBase.hpp>
+#include <Vision/Runtime/EnginePlugins/VisionEnginePlugin/GUI/Controls/VItemContainer.hpp>
+#include <Vision/Runtime/Framework/VisionApp/Modules/VDefaultMenu.hpp>
+#include <Vision/Runtime/EnginePlugins/VisionEnginePlugin/GUI/VGUIManager.hpp>
+#include <iostream>
+#include <sstream>
 
+VSmartPtr<VGUIMainContext> spGUIContext;
+VDialogPtr spMainDlg;
+VTextControl *blocksInput;
+const char *blocks;
+int value, count;
+bool once = true;
+
+
+void DeInitGUI()	{
+	spMainDlg = NULL;
+	spGUIContext->SetActivate(false);
+	
+}
 
 TowerOfDoomController::TowerOfDoomController(void)
 {
@@ -24,6 +48,7 @@ TowerOfDoomController::~TowerOfDoomController(void)
 
 void TowerOfDoomController::StackBlocks(int numOfBlocks){
 	for(int i = 0; i < numOfBlocks; i++){
+	
 		VisBaseEntity_cl *ent = Vision::Game.CreateEntity("VisBaseEntity_cl", hkvVec3(0, 0, z), "Models\\Misc\\Cube.Model");
 		vHavokRigidBody *cube = new vHavokRigidBody();
 		cube->Havok_TightFit = true;
@@ -87,6 +112,7 @@ bool TowerOfDoomController::Run(VInputMap* inputMap){
 		}
 
 	}
+
 	return true;
 }
 

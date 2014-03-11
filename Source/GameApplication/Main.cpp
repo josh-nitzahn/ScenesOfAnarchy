@@ -144,6 +144,9 @@ void ProjectTemplateApp::AfterSceneLoaded(bool bLoadingSuccessful)
 	//help.Append("");
 	//RegisterAppModule(new VHelp(help));
 
+	//VVirtualThumbStick* stick = new VVirtualThumbStick();
+
+
 	// Create a mouse controlled camera (set above the ground so that we can see the ground)
 	//Vision::Game.CreateEntity("VisMouseCamera_cl", hkvVec3(-600.0f, 0.0f, 170.0f));
 	// Add other initial game code here
